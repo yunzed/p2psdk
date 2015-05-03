@@ -1,17 +1,20 @@
-# p2psdk
-A p2p SDK for iOS and Android, works on UDP.
+# p2psdk<b/>
+A p2p SDK for iOS and Android, works on UDP.<br/>
+<br/>
+Establishing P2P link involves 3 steps:<br/>
+1, get local sdp with P2PSDK.prepare, you will receive local sdp in IP2PListener.onPrepared. <br/>
+2, send the local sdp to peer (with your signal server).<br/>
+3, call P2PSDK.punch when receive remote_sdl from peer.<br/>
+<br/>
 
-Establishing P2P link involves 3 steps:
-1, get local sdp with P2PSDK.prepare, you will receive local sdp in IP2PListener.onPrepared.
-2, send the local sdp to peer (with your signal server).
-3, call P2PSDK.punch when receive remote_sdl from peer.
+# Steps:<br/>
+1, create a P2PListener object, which implements IP2PListener.<br/>
+2, in P2PListener.onPrepared, send the local sdp to peer with some kind of signal.<br/>
+3, when get remote_sdl from peer, call punch.<br/>
 
 
-Code sample:
-1, create a P2PListener object, which implements IP2PListener.
-2, in P2PListener.onPrepared, send the local sdp to peer with some kind of signal.
-3, when get remote_sdl from peer, call punch.
-
+# Sample:<br/>
+```cpp
 class P2PListener : public IP2PListener
 {
 public:
@@ -31,6 +34,7 @@ public:
         printf("onData\n");
     }
 };
+`"
 
 @implementation P2PService
 {
